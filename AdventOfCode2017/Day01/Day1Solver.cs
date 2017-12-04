@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace AdventOfCode2017
 {
@@ -10,11 +8,7 @@ namespace AdventOfCode2017
         public bool Solve(int part = 0)
         {
             string input = File.ReadAllText("Day01/input.txt");
-
-            if (part < 2)
-                return SolvePart1(input);
-            else
-                return SolvePart2(input);
+            return part < 2 ? SolvePart1(input) : SolvePart2(input);
         }
 
         private bool SolvePart1(string input)
