@@ -6,7 +6,7 @@ namespace AdventOfCode2017
 {
     class Day10Solver : IAdventOfCodeSolver
     {
-        class KnotHash
+        internal class KnotHash
         {
             const int HashSize = 256;
             private int[] _hash = Enumerable.Range(0, HashSize).ToArray();
@@ -31,15 +31,20 @@ namespace AdventOfCode2017
 
             public string GetDenseHash()
             {
-                int[] dense = new int[HashSize / 16];
+                return GetDenseHashBytes().Select(i => i.ToString("x2")).Aggregate((s1, s2) => s1 + s2);
+            }
+
+            public byte[] GetDenseHashBytes()
+            {
+                byte[] dense = new byte[HashSize / 16];
                 for (int i = 0; i < dense.Length; i++)
                 {
-                    dense[i] = _hash.Skip(16 * i).Take(16).Aggregate((i1, i2) => i1 ^ i2);
+                    dense[i] = (byte)_hash.Skip(16 * i).Take(16).Aggregate((i1, i2) => i1 ^ i2);
                 }
 
-                return dense.Select(i => i.ToString("x2")).Aggregate((s1, s2) => s1 + s2);
+                return dense;
             }
-            
+
         }
 
         public bool Solve(int part = 0)
