@@ -6,7 +6,7 @@ namespace AdventOfCode2017
     {
         static void Main(string[] args)
         {
-            IAdventOfCodeSolver solver = new Day22Solver();
+            IAdventOfCodeSolver solver = new Day24Solver();
             solver.Solve(2);
             Console.ReadLine();
         }
